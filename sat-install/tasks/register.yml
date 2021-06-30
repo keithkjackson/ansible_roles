@@ -1,0 +1,12 @@
+---
+- name: Install Satellite Certificate
+  yum:
+    name: '{{ sat_url }}'
+    state: present
+    validate_certs: no
+
+- name: Register to Satellite
+  redhat_subscription:
+    state: present
+    activationkey: '{{ key }}'
+    org_id: '{{ org }}'

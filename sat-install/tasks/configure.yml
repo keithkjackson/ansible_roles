@@ -1,0 +1,11 @@
+---
+
+- name: Configure Satellite Server on the system
+  command: > 
+    satellite-installer 
+      --scenario satellite 
+      --foreman-initial-organization "{{initial_org }}" 
+      --foreman-initial-location "{{ initial_location }}" 
+      --foreman-initial-admin-username "{{ admin_name }}" 
+      --foreman-initial-admin-password "{{ admin_password }}"
+

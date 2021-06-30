@@ -1,0 +1,11 @@
+---
+
+- name: Enabled Satellite ports in firewalld
+  firewalld:
+    port: "{{ item }}"
+    permanent: true
+    state: enabled
+  loop: "{{ ports }}"
+
+- name: Reload firewalld for changes to take effect
+  command: firewall-cmd --reload

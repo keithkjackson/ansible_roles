@@ -1,0 +1,8 @@
+---
+
+- name: Disable all repos on system
+  command: 'subscription-manager repos --disable=*'
+
+- name: Enable Satellite repositories for install
+  command: 'subscription-manager repos --enable="{{ item }}"'
+  loop: "{{ repos }}"

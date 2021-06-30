@@ -1,0 +1,6 @@
+---
+
+- name: Install Satellite package
+  yum:
+    name: satellite
+    state: present
