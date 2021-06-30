@@ -1,0 +1,10 @@
+---
+#profile variables
+aaa_user: uid=admin,cn=users,cn=accounts,dc=lab,dc=home
+aaa_server: idm.lab.home
+aaa_pass: fo_W@A7106
+
+#auth variables for authz and authn
+aaa_profile_name: TEST
+aaa_basedn: dc=lab,dc=home
+

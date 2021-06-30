@@ -1,0 +1,22 @@
+---
+- name: Update Server
+  yum:
+    name: "*"
+    state: latest
+
+- name: Restart Server
+  shell:
+    cmd: "sleep 5 && reboot"
+  async: 1
+  poll: 0
+
+- name: Wait for 10 seconds
+  pause:
+    seconds: 10
+
+- name: Wait for reboot to finish
+  wait_for_connection:
+    connect_timeout: 30
+    sleep: 5
+    delay: 5
+    timeout: 60

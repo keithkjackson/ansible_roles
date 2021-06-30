@@ -1,0 +1,4 @@
+---
+activate_key: RHVH
+org: Home
+sat_url: "https://satellite.lab.home/pub/katello-ca-consumer-latest.noarch.rpm"

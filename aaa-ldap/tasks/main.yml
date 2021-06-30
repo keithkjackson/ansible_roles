@@ -1,0 +1,40 @@
+---
+#- name: Install AAA packages
+#  yum:
+#    name: ovirt-engine-extension-aaa-*
+#    state: latest
+
+#- name: Install AAA by name LDAP packages
+#  yum:
+#    name: ovirt-engine-extension-aaa-ldap-setup
+#    state: latest
+
+#- name: Install AAA by name MISC packages
+#  yum:
+#    name: ovirt-engine-extension-aaa-misc
+#    state: latest
+
+- name: Deploy profile
+  template:
+    src: profile
+    dest: /etc/ovirt-engine/aaa/{{ aaa_profile_name }}.properties
+    owner: ovirt
+    mode: 0600
+
+- name: Deploy normal ldap authn
+  template:
+    src: authn
+    dest: /etc/ovirt-engine/extensions.d/{{ aaa_profile_name }}-authn.properties
+
+- name: Deploy authz
+  template:
+    src: authz
+    dest: /etc/ovirt-engine/extensions.d/{{ aaa_profile_name }}-authz.properties
+  notify:
+    - restart ovirt-engine
+
+- name: Test AAA profile
+  shell: /usr/bin/ovirt-engine-extensions-tool --extension-file=/etc/ovirt-engine/extensions.d/{{ aaa_profile_name }}-authn.properties --extension-file=/etc/ovirt-engine/extensions.d/{{ aaa_profile_name }}-authz.properties aaa search --extension-name={{ aaa_profile_name }}-authz
+  failed_when: "0 != tool_result.rc"
+  changed_when: "1 == 2"
+  register: tool_result
