@@ -1,0 +1,8 @@
+---
+- name: Install External RHV Manager
+  include_tasks: external.yml
+  when: install_type == 'external'
+
+- name: Install Hosted-Engine RHV Manager
+  include_tasks: hosted-engine.yml
+  when: install_type == 'hosted-engine'

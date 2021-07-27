@@ -1,0 +1,16 @@
+---
+- name: Install RHV Manager Appliance
+  yum:
+    name: rhvm-appliance
+    state: present
+
+- name: Copy Engine-setup answer to /tmp/
+  copy:
+    src: files/hosted_engine_answers.conf
+    dest: '{{ answer_loc }}'
+
+- name: Perform automated Hosted Engine Install
+  shell:
+    cmd: hosted-engine --deploy --config-append={{ answer_loc }}
+  args:
+    executable: /bin/bash

@@ -1,0 +1,28 @@
+---
+#Installation Type and answer location
+install_type: hosted-engine
+answer_loc: /tmp/hosted_engine_answers.conf
+
+#External Manager Variables
+fqdn:
+password:
+
+#Hosted Engined Variables
+datacenter_name:
+cluster_name:
+admin_password:
+vm_name:
+gateway:
+instance_hostname:
+host_name:
+nfs_domain:
+stor_name:
+stor_datacenter:
+instance_domain:
+instance_hostname:
+dns:
+static_cidr:
+root_password:
+mac:
+memory_mb:
+vcpu:

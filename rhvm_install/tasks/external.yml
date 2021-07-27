@@ -1,0 +1,16 @@
+---
+- name: Install RHV Manager Packages
+  yum:
+    name: rhvm
+    state: present
+
+- name: Copy Engine-setup answer to /tmp/
+  copy:
+    src: files/rhvm_answers.conf
+    dest: '{{ answer_loc }}'
+
+- name: Perform automated RHV Manager Install
+  shell:
+    cmd: engine-setup --config-append= '{{ answer_loc }}'
+  args:
+    executable: /bin/bash
